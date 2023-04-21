@@ -2,19 +2,53 @@ using UnityEngine;
 
 public class Enemy : PlayableObject
 {
-    private string name;
-    private float speed;
-    private Transform target;
+    private string enemyName;
+
+
+    [SerializeField] protected float speed;
+    protected Transform target;
 
     private EnemyType enemyType;
+
+    protected virtual void Start()
+    {
+        target = GameObject.FindWithTag("Player").transform;
+    }
+
+    protected virtual void Update()
+    {
+        if (target != null)
+        {
+            Move(target.position);
+        }
+        else
+        {
+            Move(speed);
+        }
+    }
     public override void Move(Vector2 direction, Vector2 target)
     {
         Debug.Log($"Enemy is moving towards "); //{target.name}
     }
 
-    public override void Shoot(Vector3 direction, float speed)
+    public override void Move(float speed)
     {
-        Debug.Log($"Shooting a bullet towards {direction} with a speed of {speed}");
+        transform.Translate(speed * Time.deltaTime * Vector2.right);
+    }
+
+    public override void Move(Vector2 direction)
+    {
+        direction.x -= transform.position.x;
+        direction.y -= transform.position.y;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
+
+        transform.Translate(speed * Time.deltaTime * Vector2.right);
+    }
+    public override void Shoot()
+    {
+        Debug.Log($"Shooting a bullet");
     }
 
     public override void Die()
@@ -36,4 +70,8 @@ public class Enemy : PlayableObject
     {
 
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
 }

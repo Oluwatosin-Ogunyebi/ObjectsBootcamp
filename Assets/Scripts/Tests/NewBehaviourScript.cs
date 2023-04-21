@@ -19,7 +19,6 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         currentStage = CurrentStage.Paused;
 
         Debug.Log($"s1 is {s1} , s2 is {s2} and s3 is {s3}");

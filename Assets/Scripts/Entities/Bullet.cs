@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Bullet
+public class Bullet : MonoBehaviour
 {
     private float damage;
 
@@ -12,5 +12,14 @@ public class Bullet
     void Damage()
     {
         Debug.Log("Damaged Something!");
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        IDamageable damageable = collision.otherCollider.GetComponent<IDamageable>();
+        if (damageable != null)
+        {
+            damageable.GetDamage(damage);
+        }
     }
 }

@@ -26,9 +26,9 @@ public class Player : PlayableObject //Inheritance (is a)
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
-    public override void Shoot(Vector3 direction, float speed)
+    public override void Shoot()
     {
-        Debug.Log($"Shooting a bullet towards {direction} with a speed of {speed}");
+        Debug.Log($"Shooting a bullet");
     }
 
     public override void Die()
