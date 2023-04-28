@@ -37,13 +37,18 @@ public class Health
         currentHealth = value;
     }
 
+    public void RegenHealth()
+    {
+        AddHealth(healthRegenRate * Time.deltaTime);
+    }
+
     public void AddHealth(float value)
     {
-        currentHealth += value;
+        currentHealth = Mathf.Min(currentHealth, currentHealth + value);
     }
 
     public void DeductHealth(float value)
     {
-        currentHealth -= value;
+        currentHealth = Mathf.Max(0, currentHealth - value);
     }
 }
