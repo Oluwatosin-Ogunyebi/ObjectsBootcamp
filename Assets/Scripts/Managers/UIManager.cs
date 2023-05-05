@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateHealth(float currentHealth)
     {
-        txtHealth.SetText(currentHealth.ToString());
+        txtHealth.SetText(currentHealth.ToString("000"));
     }
 
     public void UpdateScore()

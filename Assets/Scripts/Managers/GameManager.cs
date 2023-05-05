@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameManager : MonoBehaviour
 {   
@@ -12,7 +13,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float enemySpawnRate;
 
     public ScoreManager scoreManager;
+    public PickupSpawner pickupSpawner;
 
+    private Player player;
     private GameObject tempEnemy;
     private bool isEnemySpawning;
 
@@ -40,6 +43,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        FindPlayer();
+
         isEnemySpawning = true;
         StartCoroutine(EnemySpawner());
     }
@@ -56,7 +61,7 @@ public class GameManager : MonoBehaviour
     public void CreateEnemy()
     {
         tempEnemy = Instantiate(enemyPrefab);
-        tempEnemy.transform.position = spawnPositions[Random.Range(0, spawnPositions.Length)].position;
+        tempEnemy.transform.position = spawnPositions[UnityEngine.Random.Range(0, spawnPositions.Length)].position;
         tempEnemy.GetComponent<Enemy>().weapon = meleeWeapon;
         tempEnemy.GetComponent<MeleeEnemy>().SetMeleeEnemy(2, 0.25f);
     }
@@ -69,4 +74,24 @@ public class GameManager : MonoBehaviour
             CreateEnemy();
         }
     }
+
+    public void NotifyDeath(Enemy enemy)
+    {
+        pickupSpawner.SpawnPickup(enemy.transform.position);
+    }
+
+    public void FindPlayer()
+    {
+        try
+        {
+            player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        }
+        catch (NullReferenceException e)
+        {
+
+            Debug.Log("Player not found");
+        }
+    }
+
+    public Player GetPlayer() { return player; }
 }

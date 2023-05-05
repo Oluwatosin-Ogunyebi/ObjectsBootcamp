@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class JSONComplexExample : MonoBehaviour
 {
-
+    public TextAsset student;
     void Start()
     {
         SampleDataComplex sample = new SampleDataComplex();
@@ -30,6 +30,10 @@ public class JSONComplexExample : MonoBehaviour
 
         string data = JsonUtility.ToJson(sample, true);
         Debug.Log(data);
+
+        SampleDataComplex sample2 = JsonUtility.FromJson<SampleDataComplex>(student.text);
+
+        Debug.Log($"Deserialized {sample2.name}'s address is {sample2.address.CurrentAddress()} and he has the books {sample2.books[0].CurrentBook()}, and {sample2.books[1].CurrentBook()}");
     }
 
     // Update is called once per frame

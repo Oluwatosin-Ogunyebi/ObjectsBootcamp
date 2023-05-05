@@ -45,7 +45,7 @@ public class Health
 
     public void AddHealth(float value)
     {
-        currentHealth = Mathf.Min(currentHealth, currentHealth + value);
+        currentHealth = Mathf.Min(maxHealth, currentHealth + value);
         OnHealthUpdate?.Invoke(currentHealth);
     }
 

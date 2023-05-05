@@ -14,7 +14,7 @@ public class Player : PlayableObject //Inheritance (is a)
     
     public void Awake()
     {
-        health = new Health(100, 0.5f,100);
+        health = new Health(100, 0.05f,100);
         playerRB = GetComponent<Rigidbody2D>();
 
         //Set player weapon
