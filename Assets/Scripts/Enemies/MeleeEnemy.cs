@@ -29,10 +29,10 @@ public class MeleeEnemy : Enemy
             speed = setSpeed;
         }
     }
-    public override void GetDamage(float damage)
-    {
-        health.DeductHealth(damage);
-    }
+    //public override void GetDamage(float damage)
+    //{
+    //    health.DeductHealth(damage);
+    //}
 
     public override void Attack(float interval)
     {

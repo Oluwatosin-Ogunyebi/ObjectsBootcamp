@@ -7,7 +7,7 @@ public class Health
     private float maxHealth;
     private float healthRegenRate;
 
-    
+    public Action<float> OnHealthUpdate;
     public Health(float _maxHealth = 100)
     {
         maxHealth = _maxHealth;
@@ -18,6 +18,7 @@ public class Health
         currentHealth = _currentHealth;
         healthRegenRate = _healthRegenRate;
         maxHealth = _maxHealth;
+        OnHealthUpdate?.Invoke(currentHealth);
     }
 
     public Health() { }
@@ -45,10 +46,12 @@ public class Health
     public void AddHealth(float value)
     {
         currentHealth = Mathf.Min(currentHealth, currentHealth + value);
+        OnHealthUpdate?.Invoke(currentHealth);
     }
 
     public void DeductHealth(float value)
     {
         currentHealth = Mathf.Max(0, currentHealth - value);
+        OnHealthUpdate?.Invoke(currentHealth);
     }
 }

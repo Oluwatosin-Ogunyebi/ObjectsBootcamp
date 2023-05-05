@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class Enemy : PlayableObject
 {
@@ -12,7 +13,16 @@ public class Enemy : PlayableObject
 
     protected virtual void Start()
     {
-        target = GameObject.FindWithTag("Player").transform;
+        try
+        {
+            target = GameObject.FindWithTag("Player").transform;
+        }
+        catch (NullReferenceException e)
+        {
+
+            Debug.Log("Player does not exist again " + e);
+        }
+       
     }
 
     protected virtual void Update()

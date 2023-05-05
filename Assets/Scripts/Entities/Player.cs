@@ -11,8 +11,8 @@ public class Player : PlayableObject //Inheritance (is a)
     [SerializeField] private Bullet bulletPrefab;
     private Rigidbody2D playerRB;
 
-    public Action<float> OnHealthUpdate;
-    public void Start()
+    
+    public void Awake()
     {
         health = new Health(100, 0.5f,100);
         playerRB = GetComponent<Rigidbody2D>();
@@ -58,8 +58,6 @@ public class Player : PlayableObject //Inheritance (is a)
     public override void GetDamage(float damage)
     {
         health.DeductHealth(damage);
-
-        OnHealthUpdate?.Invoke(health.GetHealth());
         if (health.GetHealth() <= 0)
         {
             Die();

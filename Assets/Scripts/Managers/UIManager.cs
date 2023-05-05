@@ -11,12 +11,12 @@ public class UIManager : MonoBehaviour
     private void Start()
     {   
         //Subscribing to action
-        player.OnHealthUpdate += UpdateHealth;
+        player.health.OnHealthUpdate += UpdateHealth;
     }
     private void OnDisable()
     {   
         //Unsubscribing to action
-        player.OnHealthUpdate -= UpdateHealth;
+        player.health.OnHealthUpdate -= UpdateHealth;
     }
 
     public void UpdateHealth(float currentHealth)
