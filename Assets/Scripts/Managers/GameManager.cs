@@ -18,10 +18,15 @@ public class GameManager : MonoBehaviour
     private Player player;
     private GameObject tempEnemy;
     private bool isEnemySpawning;
+    private bool isGameRunning;
 
     private Weapon meleeWeapon = new Weapon("Melee", 1, 0);
 
     private static GameManager instance;
+
+    public Action OnGameStart;
+    public Action OnGameEnd;
+
 
     private void Awake()
     {
@@ -35,7 +40,10 @@ public class GameManager : MonoBehaviour
 
         instance = this;
     }
-
+    public bool IsGameRunning()
+    {
+        return isGameRunning;
+    }
     public static GameManager GetInstance()
     {
         return instance;

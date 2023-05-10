@@ -11,6 +11,7 @@ public class Player : PlayableObject //Inheritance (is a)
     [SerializeField] private Bullet bulletPrefab;
     private Rigidbody2D playerRB;
 
+    Action OnDeath;
     
     public void Awake()
     {
@@ -47,6 +48,7 @@ public class Player : PlayableObject //Inheritance (is a)
     public override void Die()
     {
         Debug.Log("player Died");
+        OnDeath?.Invoke();
         Destroy(gameObject);
     }
 

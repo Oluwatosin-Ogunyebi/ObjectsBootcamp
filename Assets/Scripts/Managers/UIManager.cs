@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Player player;
     [SerializeField] private TMP_Text txtHealth;
     [SerializeField] private TMP_Text txtScore;
+    [SerializeField] private TMP_Text txtHighScore;
     private void Start()
     {   
         //Subscribing to action
@@ -28,5 +29,11 @@ public class UIManager : MonoBehaviour
     {
         //Update Score
         txtScore.SetText(GameManager.GetInstance().scoreManager.GetScore().ToString());
+    }
+
+    public void UpdateHighScore()
+    {
+        //Update HighScore
+        txtHighScore.SetText(GameManager.GetInstance().scoreManager.GetHighScore().ToString());
     }
 }
